@@ -11,21 +11,23 @@
             [environ.core :refer [env]])
   (:gen-class))
 
-(defroutes app-routes
-  (GET "/" [] "--==SPACERAIN==--")
-  (GET "/cf" [] (str "slackhook: " SLACK_WEBHOOK_URL)))
 
-(def app
-  (handler/site app-routes))
-
-(defn task-handler
+(defn hu-hook-handler
   "router for task handlers"
-  [args]
+  [request]
   (case (first args)
     "help" (t/help)
     "pugme" (t/pugbomb (or (second args) 1))
     "define" (t/define (clojure.string/join " " (rest args)))
     nil))
+
+(defroutes app-routes
+  (GET "/" [] "--==SPACERAIN==--")
+  ;(POST "/hu-hook" [* as r] (hu-hook-handler r)))
+  (POST "/hu-hook" [* as r] (str r)))
+
+(def app
+  (handler/site app-routes))
 
 (defn -main
   [& args]
