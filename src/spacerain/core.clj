@@ -1,7 +1,8 @@
 (ns spacerain.core
   (:require [spacerain
              [util :as u]
-             [task :as t]]
+             [task :as t]
+             [config :refer :all]]
             [compojure
              [core :refer :all]
              [handler :as handler]
@@ -11,7 +12,8 @@
   (:gen-class))
 
 (defroutes app-routes
-  (GET "/" [] "--==SPACERAIN==--"))
+  (GET "/" [] "--==SPACERAIN==--")
+  (GET "/cf" [] (str "hook: " SLACK_WEBHOOK_URL)))
 
 (def app
   (handler/site app-routes))
