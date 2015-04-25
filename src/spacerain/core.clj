@@ -15,10 +15,10 @@
 (defn hu-hook-handler
   "router for task handlers"
   [request]
-  (case (first args)
+  (case request
     "help" (t/help)
-    "pugme" (t/pugbomb (or (second args) 1))
-    "define" (t/define (clojure.string/join " " (rest args)))
+    ;"pugme" (t/pugbomb (or (second args) 1))
+    ;"define" (t/define (clojure.string/join " " (rest args)))
     nil))
 
 (defroutes app-routes
