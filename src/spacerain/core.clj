@@ -29,12 +29,12 @@
 
   ;(u/config-logger! "info")
 
-  (jetty/run-jetty #'app {:port 5050
-                            :join? false})
+  (let [port (Integer. (or port (env :port) 5050))]
+    (jetty/run-jetty (site #'app) {:port port :join? false}))
 
   #_(if (> (count args) 0)
-    (task-handler args)
+      (task-handler args)
+      (t/pugbomb args)
+      )
 
-    (t/pugbomb args)
-
-    ))
+  )
