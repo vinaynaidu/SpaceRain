@@ -11,8 +11,14 @@
             [environ.core :refer [env]])
   (:gen-class))
 
-
 (defn hu-hook-handler
+  [request]
+  (str (get request :params))
+
+  )
+
+
+#_(defn hu-hook-handler
   "router for task handlers"
   [request]
   (case request
@@ -23,8 +29,7 @@
 
 (defroutes app-routes
   (GET "/" [] "--==SPACERAIN==--")
-  ;(POST "/hu-hook" [* as r] (hu-hook-handler r)))
-  (POST "/hu-hook" [* as r] (str r)))
+  (POST "/hu-hook" [* :as r] (hu-hook-handler r)))
 
 (def app
   (handler/site app-routes))
