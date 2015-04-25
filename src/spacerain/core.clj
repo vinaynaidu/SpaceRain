@@ -13,7 +13,7 @@
 
 (defroutes app-routes
   (GET "/" [] "--==SPACERAIN==--")
-  (GET "/cf" [] (str "hook: " SLACK_WEBHOOK_URL)))
+  (GET "/cf" [] (str "slackhook: " SLACK_WEBHOOK_URL)))
 
 (def app
   (handler/site app-routes))
