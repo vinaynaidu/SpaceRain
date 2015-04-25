@@ -30,8 +30,8 @@
   (let [response (client/get (str "https://montanaflynn-dictionary.p.mashape.com/define?word=" word)
                              {:headers {"X-Mashape-Key" MASHAPE_API_KEY}})
         body (ch/parse-string (get-in response [:body]) true)
-        defs (first (get body :definitions))]
-    (post-to-slack {:text (get defs :text)}))
+        meaning (first (get body :definitions))]
+    (post-to-slack {:text (get meaning :text)}))
   "")
 
 (defn pugbomb
