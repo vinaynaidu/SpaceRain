@@ -10,3 +10,4 @@
   (timbre/set-config! [:appenders :spit :enabled?] true)
   ;;(timbre/set-config! [:shared-appender-config :spit-filename] ERR_LOG))
   (timbre/set-config! [:shared-appender-config :spit-filename] "/home/fedora-blackfyre/Downloads/log/spacerain.log"))
+

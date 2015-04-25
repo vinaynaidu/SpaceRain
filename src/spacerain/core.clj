@@ -38,7 +38,9 @@
 
   ;(u/config-logger! "info")
 
-  (let [port (Integer. (or (env :port) 5050))]
+  #_(let [port (Integer. (or (env :port) 5050))]
     (jetty/run-jetty app {:port port :join? false}))
+
+  (t/define "irony")
 
   )

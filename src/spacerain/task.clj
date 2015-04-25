@@ -27,7 +27,12 @@
 (defn define
   "defines the word"
   [word]
-  (str "yo the word is" word))
+  (let [response (client/get (str "https://montanaflynn-dictionary.p.mashape.com/define?word=" word)
+                             {:headers {"X-Mashape-Key" MASHAPE_API_KEY}})
+        body (ch/parse-string (get-in response [:body]) true)
+        defs (first (get body :definitions))]
+    (post-to-slack {:text (get defs :text)}))
+  "")
 
 (defn pugbomb
   "Posts N pug image urls from pugme.herokuapp.com to slack"

@@ -18,7 +18,7 @@
         (into {} (for [[k v] props] [(keyword k) (read-string v)]))))
     {}))
 
-(def props-map (load-props))
+(def props (load-props))
 
 ;; Environ automatically lowercases variables and replaces
 ;; underscores and periods with hyphens.
@@ -26,5 +26,9 @@
 ;; -------------------------------------------------------
 
 (def SLACK_WEBHOOK_URL (or (env :slack-webhook-url)
-                           (props-map :SLACK_WEBHOOK_URL)
+                           (props :SLACK_WEBHOOK_URL)
                            "NA"))
+
+(def MASHAPE_API_KEY (or (env :mashape-api-key)
+                         (props :MASHAPE_API_KEY)
+                         ""))
