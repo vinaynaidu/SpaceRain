@@ -12,6 +12,7 @@
   (let [tasks [{:method "define" :comment "Prints meaning of the word" :usage "define {word}"}
                {:method "ipinfo:" :comment "Prints IP geo location info" :usage "ipinfo {ip}"}
                {:method "pugme" :comment "The best feature ever" :usage "pugme"}]]
+    ""
     ))
 
 (defn post-to-slack
@@ -26,7 +27,7 @@
 (defn define
   "defines the word"
   [word]
-  (println "yo the word is" word))
+  (str "yo the word is" word))
 
 (defn pugbomb
   "Posts N pug image urls from pugme.herokuapp.com to slack"
@@ -35,4 +36,5 @@
         pugs (-> (ch/parse-string (get-in response [:body]) true) :pugs)]
     (first pugs)
     (doseq [p pugs]
-      (post-to-slack {:text p}))))
+      (post-to-slack {:text p})))
+  "")
