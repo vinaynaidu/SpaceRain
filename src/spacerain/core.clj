@@ -9,8 +9,8 @@
             [ring.adapter.jetty :as jetty])
   (:gen-class))
 
-(def app-routes
-  (GET "/" [] "Hello you there"))
+(defroutes app-routes
+  (GET "/" [] "--==SPACERAIN==--"))
 
 (def app
   (handler/site app-routes))
@@ -29,10 +29,10 @@
 
   ;(u/config-logger! "info")
 
-  #_(jetty/run-jetty #'app {:port 5050
+  (jetty/run-jetty #'app {:port 5050
                             :join? false})
 
-  (if (> (count args) 0)
+  #_(if (> (count args) 0)
     (task-handler args)
 
     (t/pugbomb args)
