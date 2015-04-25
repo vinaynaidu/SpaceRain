@@ -10,7 +10,8 @@
                  [clj-http "1.1.0"]
                  [com.taoensso/timbre "3.4.0"]
                  ;[http-kit "2.1.19"]
-                 [ring-cors "0.1.7"]]
+                 [ring-cors "0.1.7"]
+                 [environ "1.0.0"]]
   :ring {:handler spacerain.core/app}
   :main ^:skip-aot spacerain.core
   :target-path "target/%s"

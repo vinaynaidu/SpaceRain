@@ -6,7 +6,8 @@
              [core :refer :all]
              [handler :as handler]
              [route :as route]]
-            [ring.adapter.jetty :as jetty])
+            [ring.adapter.jetty :as jetty]
+            [environ.core :refer [env]])
   (:gen-class))
 
 (defroutes app-routes
@@ -29,8 +30,8 @@
 
   ;(u/config-logger! "info")
 
-  (let [port (Integer. (or port (env :port) 5050))]
-    (jetty/run-jetty (site #'app) {:port port :join? false}))
+  (let [port (Integer. (or (env :port) 5050))]
+    (jetty/run-jetty app {:port port :join? false}))
 
   #_(if (> (count args) 0)
       (task-handler args)
