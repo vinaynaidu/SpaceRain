@@ -20,11 +20,11 @@
 
 (def props-map (load-props))
 
-(defn find-prop
-  "shortcut method to find prop either in file on via env"
-  [propkey]
-  (or (env propkey)
-      (props-map propkey)
-      "NA"))
+;; Environ automatically lowercases variables and replaces
+;; underscores and periods with hyphens.
+;; SLACK_WEBHOOK_URL becomes :slack-webhook-url
+;; -------------------------------------------------------
 
-(def SLACK_WEBHOOK_URL (find-prop :SLACK_WEBHOOK_URL))
+(def SLACK_WEBHOOK_URL (or (env :slack-webhook-url)
+                           (props-map :SLACK_WEBHOOK_URL)
+                           "still NA"))
