@@ -24,7 +24,7 @@
       "help" (t/help)
       "pugme" (t/pugbomb 1)
       "define" (t/define (clojure.string/join " " (rest args)))
-      nil)))
+      "Not sure what to do with that... try help")))
 
 (defroutes app-routes
   (GET "/" [] "--==SPACERAIN==--")
@@ -40,10 +40,5 @@
 
   (let [port (Integer. (or (env :port) 5050))]
     (jetty/run-jetty app {:port port :join? false}))
-
-  #_(if (> (count args) 0)
-      (task-handler args)
-      (t/pugbomb args)
-      )
 
   )

@@ -27,4 +27,4 @@
 
 (def SLACK_WEBHOOK_URL (or (env :slack-webhook-url)
                            (props-map :SLACK_WEBHOOK_URL)
-                           "still NA"))
+                           "NA"))
