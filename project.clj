@@ -14,4 +14,5 @@
   :ring {:handler spacerain.core/app}
   :main ^:skip-aot spacerain.core
   :target-path "target/%s"
+  :min-lein-version "2.0.0"
   :profiles {:uberjar {:aot :all}})
