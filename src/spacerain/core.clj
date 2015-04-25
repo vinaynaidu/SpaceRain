@@ -13,19 +13,18 @@
 
 (defn hu-hook-handler
   [request]
-  (str (get request :params))
+  (let [params (get request :params)
+        text (get params :text "")
+        channel (get params :channel_name "_")
+        user (get params :user_name)
+        args (clojure.string/split text #" ")]
 
-  )
-
-
-#_(defn hu-hook-handler
-  "router for task handlers"
-  [request]
-  (case request
-    "help" (t/help)
-    ;"pugme" (t/pugbomb (or (second args) 1))
-    ;"define" (t/define (clojure.string/join " " (rest args)))
-    nil))
+    ;; process text (commands)
+    (case (first args)
+      "help" (t/help)
+      "pugme" (t/pugbomb 1)
+      "define" (t/define (clojure.string/join " " (rest args)))
+      nil)))
 
 (defroutes app-routes
   (GET "/" [] "--==SPACERAIN==--")

@@ -24,7 +24,5 @@
   [n]
   (let [response (client/get (str "http://pugme.herokuapp.com/bomb?count=" n))
         pugs (-> (ch/parse-string (get-in response [:body]) true) :pugs)]
-    (doseq [p pugs]
-      ;;post to slack
-      (println p))
+    (first pugs)
     ))
