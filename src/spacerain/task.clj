@@ -20,10 +20,8 @@
   [message request]
   (let [params (get request :params)
         text (get params :text "")
-        channel_name (get params :channel_name)
-        channel (if (some #{channel_name} ["privategroup" "directmessage"])
-                  "_v_"
-                  (str "#" channel_name))
+        ;; Channel_id works across public/private groups and DM's as well
+        channel (get params :channel_id)
         user (get params :user_name)
         full-message {:text (str user ": " text
                                  "\n\n"
