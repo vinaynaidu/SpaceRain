@@ -24,7 +24,7 @@
       "help" (t/help)
       "pugme" (t/pugbomb 1 request)
       "define" (t/define (clojure.string/join " " (rest args)) request)
-      "udefine" (t/urban-define (clojure.string/join "" (rest args)) request)
+      "urban" (t/urban-define (clojure.string/join "" (rest args)) request)
       ;;bounce back the incoming request for testing purposes
       "test" (str request)
       "Not sure what to do with that... try help")))

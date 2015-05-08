@@ -14,6 +14,6 @@ HU's very own bot for slack.
 | Command | Description | Usage | Notes |
 |---|---|---|---|
 | `define` | prints the dictionary definition of the term | `/hu define lazy` | |
-| `udefine` | looks up given word/phrase on urban dictionary and returns random definition | `/hu udefine wat` | |
+| `urban` | looks up given word/phrase on urban dictionary and returns random definition | `/hu urban wat` | |
 | `pugme` | posts a picture of a pug | `/hu pugme` | |
 | `test` | posts back the request object recieved from slack. useful for debugging channel specific info | `/hu test` | |
