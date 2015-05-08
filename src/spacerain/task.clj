@@ -69,4 +69,5 @@
                             "\nexample: "
                             (:example random-def))]
     ;(println formatted-text)
-    (post-to-slack {:text formatted-text} r)))
+    (post-to-slack {:text formatted-text} r))
+  "")
