@@ -43,6 +43,6 @@
   (let [port (Integer. (or (env :port) 5050))]
     (jetty/run-jetty app {:port port :join? false}))
 
-  ;(t/define "irony")
+  ;(t/define "irony" nil)
 
   )

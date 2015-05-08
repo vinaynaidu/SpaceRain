@@ -39,12 +39,16 @@
   (let [response (client/get (str "https://montanaflynn-dictionary.p.mashape.com/define?word=" word)
                              {:headers {"X-Mashape-Key" MASHAPE_API_KEY}})
         body (ch/parse-string (get-in response [:body]) true)
-        meaning (first (get body :definitions))]
-    (if (not-empty meaning)
+        meanings (map :text (get body :definitions))]
+    (if (not-empty meanings)
       (do
-        (post-to-slack {:text (get meaning :text)} r)
-        ;; return empty response for word that has meanings so slack command ends quietly
-        "")
+        (let [formatted-text (->> (interleave (rest (range)) (repeat ". ") meanings (repeat \newline))
+                                  (apply str))]
+          ;(println formatted-text)
+          (post-to-slack {:text formatted-text} r)
+          ;; return empty response for word that has meanings so slack command ends quietly
+          ""
+          ))
       "no definition found")))
 
 (defn pugbomb
