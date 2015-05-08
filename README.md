@@ -23,8 +23,8 @@ HU's very own bot for slack.
 **Bot not responding?**  
 Heroku seems to put inactive applications to sleep. You'll need to wake it up by visiting the bots homepage at [spacerain.herokuapp.com](spacerain.herokuapp.com). When that's done, bot should be responsive again.
 
-**spacerain.heroku.com says application error?**
+**spacerain.heroku.com says application error?**  
 Application has crashed. You'll need to `cd` into the project dir and run `heroku restart`. That should put things back on track.
 
-**Want to check app logs?**
+**Want to check app logs?**  
 `cd` into app directory and either `heroku logs` to see latest log or `heroku logs --tail` to see live logging.
