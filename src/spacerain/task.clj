@@ -9,11 +9,7 @@
 (defn help
   "sends list of commands to slack"
   []
-  (let [tasks [{:method "define" :comment "Prints meaning of the word" :usage "define {word}"}
-               {:method "ipinfo:" :comment "Prints IP geo location info" :usage "ipinfo {ip}"}
-               {:method "pugme" :comment "The best feature ever" :usage "pugme"}]]
-    "available commands: define: defines a word; pugme: posts a picture of a pug"
-    ))
+  "refer: https://github.com/vinaynaidu/SpaceRain/blob/master/README.md#supported-commands")
 
 (defn post-to-slack
   "posts given message to slack as a bot user"
@@ -60,3 +56,17 @@
     (doseq [p pugs]
       (post-to-slack {:text p} r)))
   "")
+
+(defn urban-define
+  "gets meanings from urban dictionary"
+  [word r]
+  (let [response (client/get (str "https://mashape-community-urban-dictionary.p.mashape.com/define?term=" word)
+                             {:headers {"X-Mashape-Key" MASHAPE_API_KEY}})
+        body (ch/parse-string (get-in response [:body]) true)
+        random-def (->> body :list (rand-nth))
+        formatted-text (str "definition: "
+                            (:definition random-def)
+                            "\nexample: "
+                            (:example random-def))]
+    ;(println formatted-text)
+    (post-to-slack {:text formatted-text} r)))
